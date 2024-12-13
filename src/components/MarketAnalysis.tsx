@@ -81,7 +81,7 @@ export const MarketAnalysis: React.FC<{ reportId: string }> = ({ reportId }) => 
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-64">
+      <div className="flex items-center justify-center h-64" role="status">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
       </div>
     );
@@ -149,7 +149,7 @@ export const MarketAnalysis: React.FC<{ reportId: string }> = ({ reportId }) => 
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis 
               dataKey="date" 
-              tickFormatter={(date) => {
+              tickFormatter={(date: string) => {
                 const [year, month] = date.split('-');
                 return `${month}/${year.slice(2)}`;
               }}
@@ -157,7 +157,7 @@ export const MarketAnalysis: React.FC<{ reportId: string }> = ({ reportId }) => 
             <YAxis 
               yAxisId="price"
               orientation="left"
-              tickFormatter={(value) => `$${(value / 1000)}k`}
+              tickFormatter={(value: number) => `$${(value / 1000)}k`}
             />
             <YAxis 
               yAxisId="volume"
