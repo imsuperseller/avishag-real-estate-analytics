@@ -1,0 +1,30 @@
+{
+  "framework": "nextjs",
+  "language": "typescript",
+  "typescript": {
+    "strict": true,
+    "moduleResolution": "node"
+  },
+  "formatting": {
+    "indentSize": 2,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "linting": {
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true
+  },
+  "paths": {
+    "baseUrl": ".",
+    "aliases": {
+      "@/*": ["src/*"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    ".next",
+    "out"
+  ]
+} 
