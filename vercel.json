@@ -1,15 +1,12 @@
 {
   "version": 2,
   "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "regions": ["sfo1"],
+  "outputDirectory": ".next",
   "env": {
-    "NEXT_PUBLIC_VERCEL_URL": "VERCEL_URL"
-  },
-  "github": {
-    "enabled": true,
-    "silent": true
+    "AIRTABLE_API_KEY": "@airtable_api_key",
+    "AIRTABLE_BASE_ID": "@airtable_base_id",
+    "OPENAI_API_KEY": "@openai_api_key"
   }
 } 

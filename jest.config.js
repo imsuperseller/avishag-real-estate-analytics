@@ -1,46 +1,27 @@
 /** @type {import('jest').Config} */
-const config = {
-  preset: 'ts-jest',
+module.exports = {
   testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/src/tests/setup.ts'],
+  testMatch: ['**/*.test.ts?(x)'],
+  transform: {
+    '^.+\\.(ts|tsx)$': 'ts-jest',
+  },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
-    '\\.(css|less|sass|scss)$': 'identity-obj-proxy'
+    '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
   },
-  setupFilesAfterEnv: [
-    '<rootDir>/src/tests/setup.ts',
-    '@testing-library/jest-dom'
-  ],
-  transform: {
-    '^.+\\.(ts|tsx)$': [
-      'babel-jest',
-      {
-        presets: [
-          ['@babel/preset-env', { targets: { node: 'current' } }],
-          '@babel/preset-typescript',
-          ['@babel/preset-react', { runtime: 'automatic' }]
-        ],
-        plugins: ['@babel/plugin-transform-runtime']
-      }
-    ],
-    '^.+\\.(js|jsx)$': [
-      'babel-jest',
-      {
-        presets: ['@babel/preset-env', '@babel/preset-react']
-      }
-    ]
-  },
-  transformIgnorePatterns: [
-    '/node_modules/(?!react-dropzone|jest-axe)'
-  ],
-  testPathIgnorePatterns: [
-    '<rootDir>/node_modules/',
-    '<rootDir>/.next/'
-  ],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  testEnvironmentOptions: {
-    customExportConditions: [''],
-    accessibility: true
-  }
-};
-
-export default config; 
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/tests/**/*',
+  ],
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
+    },
+  },
+}; 
