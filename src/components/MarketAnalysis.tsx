@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useAirtable } from '../hooks/useAirtable';
 import { Property } from '../types/property';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, TooltipProps } from 'recharts';
+import { 
+  LineChart, 
+  Line, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  Legend, 
+  ResponsiveContainer,
+  TooltipProps 
+} from 'recharts';
 import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 
 interface MarketMetrics {
@@ -16,6 +26,20 @@ interface MarketMetrics {
     volume: number;
   }>;
 }
+
+interface TrendDataPoint {
+  date: string;
+  price: number;
+  volume: number;
+}
+
+const formatTooltipValue = (value: ValueType, name: NameType): [string | number, string] => {
+  if (name === 'price') {
+    const numValue = typeof value === 'number' ? value : 0;
+    return [`$${numValue.toLocaleString()}`, 'Average Price'];
+  }
+  return [value as number, 'Number of Listings'];
+};
 
 export const MarketAnalysis: React.FC<{ reportId: string }> = ({ reportId }) => {
   const { getListingsByReport, transformListingToProperty, isLoading, error } = useAirtable();
@@ -146,7 +170,7 @@ export const MarketAnalysis: React.FC<{ reportId: string }> = ({ reportId }) => 
       <div className="h-96 mt-8">
         <h3 className="text-xl font-semibold text-gray-800 mb-4">Price Trends</h3>
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={metrics.monthlyTrend}>
+          <LineChart<TrendDataPoint> data={metrics.monthlyTrend}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis 
               dataKey="date" 
@@ -164,11 +188,8 @@ export const MarketAnalysis: React.FC<{ reportId: string }> = ({ reportId }) => 
               yAxisId="volume"
               orientation="right"
             />
-            <Tooltip 
-              formatter={(value: ValueType, name: NameType) => {
-                if (name === 'price') return [`$${value?.toLocaleString()}`, 'Average Price'];
-                return [value, 'Number of Listings'];
-              }}
+            <Tooltip<TrendDataPoint> 
+              formatter={formatTooltipValue}
             />
             <Legend />
             <Line
