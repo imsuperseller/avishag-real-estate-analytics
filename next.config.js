@@ -14,6 +14,11 @@ const nextConfig = {
     config.resolve.fallback = { fs: false, path: false };
     return config;
   },
+  experimental: {
+    instrumentationHook: true,
+  },
+  // Enable built-in Next.js performance analytics
+  analyticsId: process.env.NEXT_PUBLIC_ANALYTICS_ID,
 }
 
 module.exports = nextConfig 

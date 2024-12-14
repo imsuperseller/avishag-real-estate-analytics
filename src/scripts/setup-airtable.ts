@@ -1,5 +1,5 @@
 import Airtable from 'airtable';
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 
 dotenv.config();
 

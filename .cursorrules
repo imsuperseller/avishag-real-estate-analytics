@@ -1,0 +1,94 @@
+# Cursor Rules for Real Estate Analytics Platform
+
+## Code Style and Structure
+- Write concise, technical TypeScript code with accurate types and interfaces.
+- Use functional components with proper TypeScript interfaces.
+- Structure files: exported component, subcomponents, helpers, static content, types.
+- Follow Next.js best practices for file organization and routing.
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
+
+## TypeScript Usage
+- Use strict TypeScript with all strict flags enabled.
+- Prefer interfaces over types for better extensibility.
+- Use proper type guards and assertions.
+- Implement comprehensive type definitions for all data structures.
+- Use mapped types and utility types where appropriate.
+
+## Testing Standards
+- Write comprehensive Jest tests with React Testing Library.
+- Include unit, integration, and performance tests.
+- Use proper test isolation and mocking.
+- Test accessibility using ARIA roles and screen readers.
+- Implement performance benchmarks for critical components.
+
+## Performance Optimization
+- Implement proper memoization using useMemo and useCallback.
+- Monitor and optimize render cycles.
+- Use proper data structures for large datasets.
+- Implement efficient WebSocket handling.
+- Track and optimize memory usage.
+
+## State Management
+- Use React Context and useReducer for global state.
+- Implement proper WebSocket state synchronization.
+- Handle offline/online states gracefully.
+- Use proper error boundaries and fallbacks.
+- Implement proper data caching strategies.
+
+## UI and Styling
+- Use Tailwind CSS for styling with proper responsive design.
+- Follow the established color scheme and design tokens.
+- Implement proper dark mode support.
+- Ensure high accessibility standards.
+- Use proper loading states and error handling.
+
+## Data Handling
+- Implement proper validation for MLS data.
+- Use Airtable for data persistence.
+- Handle real-time updates efficiently.
+- Implement proper error handling for API calls.
+- Use proper data transformation and normalization.
+
+## File Organization
+- Use lowercase with dashes for directories.
+- Group related components and utilities.
+- Keep test files close to their components.
+- Use proper barrel exports.
+- Follow Next.js file-based routing conventions.
+
+## Error Handling
+- Implement proper error boundaries.
+- Use proper type checking and validation.
+- Handle API errors gracefully.
+- Provide meaningful error messages.
+- Implement proper logging and monitoring.
+
+## Security
+- Properly handle environment variables.
+- Implement proper input sanitization.
+- Use proper authentication and authorization.
+- Follow security best practices for WebSocket connections.
+- Implement proper rate limiting.
+
+## Documentation
+- Document complex type definitions.
+- Include JSDoc comments for public APIs.
+- Document performance considerations.
+- Include setup instructions.
+- Document testing strategies.
+
+## Key Conventions
+1. Use TypeScript's strict mode with all strict flags.
+2. Follow React's functional component patterns.
+3. Implement comprehensive testing.
+4. Use proper performance monitoring.
+5. Follow proper WebSocket handling patterns.
+6. Use proper state management patterns.
+7. Follow proper error handling patterns.
+
+## API Documentation
+- Use proper TypeScript interfaces for API responses.
+- Document WebSocket message formats.
+- Include validation rules.
+- Document error responses.
+- Include performance considerations.

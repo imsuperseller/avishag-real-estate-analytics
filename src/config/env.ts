@@ -1,21 +1,30 @@
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 
-// Load environment variables
 dotenv.config();
 
-// Validate and export environment variables
-export const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
-export const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
-export const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+export const config = {
+  airtable: {
+    apiKey: process.env.AIRTABLE_API_KEY,
+    baseId: process.env.AIRTABLE_BASE_ID,
+  },
+  openai: {
+    apiKey: process.env.OPENAI_API_KEY,
+  },
+  google: {
+    aiStudioApiKey: process.env.GOOGLE_AI_STUDIO_API_KEY,
+  },
+} as const;
 
-if (!AIRTABLE_API_KEY) {
-  throw new Error('AIRTABLE_API_KEY is not set in environment variables');
-}
+// Validate required environment variables
+const requiredEnvVars = [
+  'AIRTABLE_API_KEY',
+  'AIRTABLE_BASE_ID',
+  'OPENAI_API_KEY',
+  'GOOGLE_AI_STUDIO_API_KEY',
+] as const;
 
-if (!AIRTABLE_BASE_ID) {
-  throw new Error('AIRTABLE_BASE_ID is not set in environment variables');
-}
-
-if (!OPENAI_API_KEY) {
-  throw new Error('OPENAI_API_KEY is not set in environment variables');
+for (const envVar of requiredEnvVars) {
+  if (!process.env[envVar]) {
+    throw new Error(`Missing required environment variable: ${envVar}`);
+  }
 } 
