@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useAirtable } from '../hooks/useAirtable';
 import { Property } from '../types/property';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { TooltipFormatter } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, TooltipProps } from 'recharts';
+import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 
 interface MarketMetrics {
   averagePrice: number;
@@ -165,10 +165,9 @@ export const MarketAnalysis: React.FC<{ reportId: string }> = ({ reportId }) => 
               orientation="right"
             />
             <Tooltip 
-              formatter={(value: string | number, name: string) => {
-                const numValue = typeof value === 'string' ? parseFloat(value) : value;
-                if (name === 'price') return [`$${numValue.toLocaleString()}`, 'Average Price'];
-                return [numValue, 'Number of Listings'];
+              formatter={(value: ValueType, name: NameType) => {
+                if (name === 'price') return [`$${value?.toLocaleString()}`, 'Average Price'];
+                return [value, 'Number of Listings'];
               }}
             />
             <Legend />
